@@ -29,34 +29,6 @@ export function instanceOf{{classname}}(value: object): value is {{classname}} {
     return true;
 }
 
-{{#oneOf}}
-{{#-first}}
-{{#discriminator}}
-export function instanceOf{{classname}}(value: object): boolean {
-    {{#mappedModels}}
-    if ('{{discriminator.propertyName}}' in value && value['{{discriminator.propertyName}}'] === '{{mappingName}}') {
-        return instanceOf{{modelName}}(value);
-    }
-    {{/mappedModels}}
-    return false;
-}
-{{/discriminator}}
-{{^discriminator}}
-{{#oneOf}}
-export function instanceOf{{.}}(value: object): boolean {
-    {{#requiredVars}}
-    if (!('{{name}}' in value) || value['{{name}}'] !== Object.values({{classname}}{{enumName}})[0]) return false;
-    {{/requiredVars}}
-    {{#optionalVars}}
-    if ('{{name}}' in value && typeof value['{{name}}'] !== '{{dataType}}') return false;
-    {{/optionalVars}}
-    return true;
-}
-{{/oneOf}}
-{{/discriminator}}
-{{/-first}}
-{{/oneOf}}
-
 export function {{classname}}FromJSON(json: any): {{classname}} {
     return {{classname}}FromJSONTyped(json, false);
 }
