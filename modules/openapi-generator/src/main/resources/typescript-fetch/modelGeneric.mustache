@@ -23,7 +23,7 @@ import { {{modelName}}FromJSONTyped } from './{{modelName}}{{importFileExtension
 export function instanceOf{{classname}}(value: object): value is {{classname}} {
     {{#vars}}
     {{#required}}
-    if (!('{{name}}' in value){{#isEnum}} || value['{{name}}'] !== {{enumType}}[0]{{/isEnum}}) return false;
+    if (!('{{name}}' in value){{#isEnum}} || value['{{name}}'] !== Object.values({{datatypeWithEnum}})[0]{{/isEnum}}) return false;
     {{/required}}
     {{/vars}}
     return true;
