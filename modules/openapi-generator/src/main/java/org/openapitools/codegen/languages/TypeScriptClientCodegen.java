@@ -366,6 +366,7 @@ public class TypeScriptClientCodegen extends AbstractTypeScriptClientCodegen imp
             for (CodegenProperty var : cm.vars) {
                 if (Boolean.TRUE.equals(var.isEnum)) {
                     var.datatypeWithEnum = var.datatypeWithEnum.replace(var.enumName, cm.classname + var.enumName);
+                    var.enumType = cm.classname + var.enumName;
                 }
             }
             if (cm.parent != null) {
@@ -373,6 +374,7 @@ public class TypeScriptClientCodegen extends AbstractTypeScriptClientCodegen imp
                     if (Boolean.TRUE.equals(var.isEnum)) {
                         var.datatypeWithEnum = var.datatypeWithEnum
                                 .replace(var.enumName, cm.classname + var.enumName);
+                        var.enumType = cm.classname + var.enumName;
                     }
                 }
             }
